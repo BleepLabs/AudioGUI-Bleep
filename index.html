@@ -492,6 +492,8 @@ span.mainfunction {color: #993300; font-weight: bolder}
 		{"type":"AudioOutputADAT","data":{"defaults":{"name":{"value":"new"}},"shortName":"adat","inputs":8,"outputs":0,"category":"output-function","color":"#E6E0F8","icon":"arrow-in.png"}},
 		{"type":"AudioOutputUSB","data":{"defaults":{"name":{"value":"new"}},"shortName":"usb","inputs":2,"outputs":0,"category":"output-function","color":"#E6E0F8","icon":"arrow-in.png"}},
 
+		{"type":"MemSampler","data":{"defaults":{"name":{"value":"new"}},"shortName":"sampler","inputs":1,"outputs":1,"category":"play-function","color":"#E6E0F8","icon":"arrow-in.png"}},
+
 		{"type":"AudioAmplifier","data":{"defaults":{"name":{"value":"new"}},"shortName":"amp","inputs":1,"outputs":1,"category":"mixer-function","color":"#E6E0F8","icon":"arrow-in.png"}},
 		{"type":"AudioMixer4","data":{"defaults":{"name":{"value":"new"}},"shortName":"mixer","inputs":4,"outputs":1,"category":"mixer-function","color":"#E6E0F8","icon":"arrow-in.png"}},
 		{"type":"AudioPlayMemory","data":{"defaults":{"name":{"value":"new"}},"shortName":"playMem","inputs":0,"outputs":1,"category":"play-function","color":"#E6E0F8","icon":"arrow-in.png"}},
@@ -2596,6 +2598,19 @@ Returns the actual achieved attenuation of the anti-aliasing filter. If the inpu
 	</div>
 </script>
 
+<script type="text/x-red" data-help-name="MemSampler">
+
+	<h3><p><a href="https://github.com/BleepLabs/dadageek-April-21/blob/main/Class_code/Class_7/Samplers_-_v2/Samplers_-_v2.ino" target="_blank">example</a></p></h3>
+
+</script>
+<script type="text/x-red" data-template-name="MemSampler">
+	<div class="form-row">
+		<label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+		<input type="text" id="node-input-name" placeholder="Name">
+	</div>
+</script>
+
+
 <script type="text/x-red" data-help-name="AudioPlayMemory">
 	<h3>Summary</h3>
 	<div class=tooltipinfo>
@@ -3939,22 +3954,10 @@ double s_freq = .0625;</p>
 
 
 <script type="text/x-red" data-help-name="AudioEffectEnvelopeAdjustable">
-	<h3>Summary</h3>
-	<div class=tooltipinfo>
-	<p>Modify a signal with a DAHDSR (Delay Attack Hold Decay Sustain
-		Release) envelope.
-	</p>
-	<p align=center><img src="img/dahdsr.png"></p>
-	</div>
-	<h3>Audio Connections</h3>
-	<table class=doc align=center cellpadding=3>
-		<tr class=top><th>Port</th><th>Purpose</th></tr>
-		<tr class=odd><td align=center>In 0</td><td>Signal Input</td></tr>
-		<tr class=odd><td align=center>Out 0</td><td>Signal with Envelope Applied</td></tr>
-	</table>
-	<h3>Functions</h3>
-	
-	<h3>Notes</h3>
+	<h3><p>	<p><a href="https://github.com/BleepLabs/dadageek-April-21/blob/main/Class_code/Class_7/Samplers_-_v2/Samplers_-_v2.ino" target="_blank">example</a></p>
+
+	</p><h3>
+
 </script>
 <script type="text/x-red" data-template-name="AudioEffectEnvelopeAdjustable">
 	<div class="form-row">
@@ -4135,7 +4138,33 @@ double s_freq = .0625;</p>
 		<tr class=odd><td align=center>In 0</td><td>Signal Input</td></tr>
 		<tr class=odd><td align=center>Out 0</td><td>Delay Output</td></tr>
 	</table>
+
 	<h3>Functions</h3>
+		<p class=func><span class=keyword>begin</span>(bank, bank size, delay length, sample rate, Interpolation);</p>
+	<p class=desc>
+		<b>Bank</b> Array to use for delay. Should be an "int16_t" 
+		<br>
+		<b>Bank size</b> Size of the int16_t bank. For example:<br>
+		#define DELAY_SIZE 20000 <br>
+		int16_t tape_delay_bank[DELAY_SIZE]; 
+		<br>
+		<b>Delay length</b> length of the delay effect in samples. A smaller number is a shorter delay. 
+		<br>
+		<b>Sample rate</b> is sample rate reduction. Takes integers. 0 is 44100, 1 is 22050, 2 is 11025 etc. It's crude but allows you to double or quadruple the delay length at the expense of sample rate. (todo: make this fine tuneable with an accumulator)<br>
+        <b>Interpolation</b> is how fast it moves to the desired length. 0 is as fast as it can. 1 is a little slower, etc takes integers. (todo: make this fine tuneable with an accumulator)<br>
+	</p>
+	<p class=func><span class=keyword>length</span>(delay length);</p>
+	<p class=desc>Sets the desired length of the delay effect in samples. The dealy will interpolate to this value at the rate selected in lerp. A smaller number is a shorter delay. 
+	</p>
+		<p class=func><span class=keyword>length_no_lerp</span>(delay length);</p>
+	<p class=desc>Jump to this delay length without interpolating 
+	</p>
+			<p class=func><span class=keyword>sampleRate</span>(amount);</p>
+	<p class=desc>Takes integers. 0 is 44100, 1 is 22050, 2 is 11025 etc. It's crude but allows you to double or quadruple the delay length at the expense of sample rate. (todo: make this fine tuneable with an accumulator)<br>
+				<p class=func><span class=keyword>interpolation</span>(amount);</p>
+	<p class=desc>Takes integers.  is how fast it moves to the desired length. 0 is as fast as it can. 1 is a little slower. <br>
+			<h3>Examples</h3>
+
 		<p><a href="https://github.com/BleepLabs/dadageek-April-21/blob/main/Class_code/Class_6/tape_delay_1/effect_tape_delay.cpp">Example code</a>
 	</p>
 

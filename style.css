@@ -74,7 +74,7 @@ a.brand img {
 
 #chart {
    overflow: auto;
-   background: #e3e3e3;
+   background: #333;
    position: absolute;
    bottom:0px;
    top: 30px;
