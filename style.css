@@ -17,7 +17,10 @@
 body {
   font: 13px "Helvetica" !important;
   padding-top: 100px;
+  /*
   background: url("img/pw_maze_white.png");
+  */
+  background: #47394d;
 }
 #dropTarget {
     position: absolute;
@@ -77,6 +80,7 @@ a.brand img {
    top: 30px;
    left:0px;
    right:0px;
+   
 }
 
 #workspace-toolbar {

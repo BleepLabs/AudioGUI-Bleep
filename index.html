@@ -24,7 +24,7 @@
   limitations under the License.
 -->
 <head>
-<title>Audio System Design Tool for Teensy Audio Library</title>
+<title>Audio System Design Tool for Teensy Audio Library - Bleep Labs version</title>
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
 <link href="jquery/css/smoothness/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" media="screen">
 <link rel="stylesheet" type="text/css" href="orion/built-editor.css"/>
@@ -53,7 +53,7 @@ span.mainfunction {color: #993300; font-weight: bolder}
 <div class="navbar navbar-inverse navbar-fixed-top">
 	<div class="navbar-inner">
 		<div class="container-fluid">
-			<span class="brand">Audio System Design Tool for <a href="http://www.pjrc.com/teensy/td_libs_Audio.html" target="_blank">Teensy Audio Library</a></span>
+			<span class="brand">Audio System Design Tool for <a href="http://www.pjrc.com/teensy/td_libs_Audio.html" target="_blank">Teensy Audio Library</a> - <b>Bleep Version</b></span>
 			<div class="btn-group pull-right">
 				<a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-align-justify"></i> <span class="caret"></span></a>
 				<ul class="dropdown-menu">
@@ -526,7 +526,7 @@ span.mainfunction {color: #993300; font-weight: bolder}
 		{"type":"AudioEffectMultiply","data":{"defaults":{"name":{"value":"new"}},"shortName":"multiply","inputs":2,"outputs":1,"category":"effect-function","color":"#E6E0F8","icon":"arrow-in.png"}},
 		{"type":"AudioEffectRectifier","data":{"defaults":{"name":{"value":"new"}},"shortName":"rectify","inputs":1,"outputs":1,"category":"effect-function","color":"#E6E0F8","icon":"arrow-in.png"}},
 		{"type":"AudioEffectDelay","data":{"defaults":{"name":{"value":"new"}},"shortName":"delay","inputs":1,"outputs":8,"category":"effect-function","color":"#E6E0F8","icon":"arrow-in.png"}},
-		{"type":"AudioEffectTapeDelay","data":{"defaults":{"name":{"value":"new"}},"shortName":"tapeDelay","inputs":1,"outputs":8,"category":"effect-function","color":"#E6E0F8","icon":"arrow-in.png"}},
+		{"type":"AudioEffectTapeDelay","data":{"defaults":{"name":{"value":"new"}},"shortName":"tapeDelay","inputs":1,"outputs":1,"category":"effect-function","color":"#E6E0F8","icon":"arrow-in.png"}},
 		{"type":"AudioEffectDelayExternal","data":{"defaults":{"name":{"value":"new"}},"shortName":"delayExt","inputs":1,"outputs":8,"category":"effect-function","color":"#E6E0F8","icon":"arrow-in.png"}},
 		{"type":"AudioEffectBitcrusher","data":{"shortName":"bitcrusher","inputs":1,"outputs":1,"category":"effect-function","color":"#E6E0F8","icon":"arrow-in.png"}},
 		{"type":"AudioEffectMidSide","data":{"shortName":"midside","inputs":2,"outputs":2,"category":"effect-function","color":"#E6E0F8","icon":"arrow-in.png"}},
@@ -4119,6 +4119,27 @@ double s_freq = .0625;</p>
 	</table>
 </script>
 <script type="text/x-red" data-template-name="AudioEffectDelay">
+	<div class="form-row">
+		<label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+		<input type="text" id="node-input-name" placeholder="Name">
+	</div>
+</script>
+
+<script type="text/x-red" data-help-name="AudioEffectDelayTape">
+	<h3>Summary</h3>
+	<div class=tooltipinfo>
+	<p>Delay a signal and allow smooth time adjustment</p>
+	</div>
+	<h3>Audio Connections</h3>
+	<table class=doc align=center cellpadding=3>
+		<tr class=top><th>Port</th><th>Purpose</th></tr>
+		<tr class=odd><td align=center>In 0</td><td>Signal Input</td></tr>
+		<tr class=odd><td align=center>Out 0</td><td>Delay out</td></tr>
+	</table>
+	<p><a href="https://github.com/BleepLabs/dadageek-April-21/blob/main/Class_code/Class_6/tape_delay_1/effect_tape_delay.cpp">Example code</a>
+	</p>
+</script>
+<script type="text/x-red" data-template-name="AudioEffectDelayTape">
 	<div class="form-row">
 		<label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
 		<input type="text" id="node-input-name" placeholder="Name">
